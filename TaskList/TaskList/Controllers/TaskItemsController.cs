@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TaskList.Data;
 using TaskList.Models;
 
 namespace TaskList.Controllers
 {
-    []
+
     public class TaskItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,6 +25,12 @@ namespace TaskList.Controllers
         {
             var userId = _userManager.GetUserId(User);
             return View(await _context.Items.Where(x => x.User.Id == userId).ToListAsync());
+        }
+
+        //GET: TaskItems
+        public IActionResult Search()
+        {
+            return View();
         }
 
         // GET: TaskItems/Details/5
@@ -69,6 +72,13 @@ namespace TaskList.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(taskItem);
+        }
+
+        [HttpPost]
+        public IActionResult Search(string description)
+        {
+            var results = _context.Items.Where(x => x.Description.ToLower().Contains(description.ToLower())).ToList();
+            return View("SearchTaskList", results);
         }
 
         // GET: TaskItems/Edit/5

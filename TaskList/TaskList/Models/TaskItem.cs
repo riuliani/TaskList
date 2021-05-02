@@ -7,7 +7,7 @@ namespace TaskList.Models
     public class TaskItem
     {
         public int ID { get; set; }
-        public string description { get; set; }
+        public string Description { get; set; }
         [Display(Name = "Completed By")]
         public DateTime CompleteBy { get; set; }
         [Display(Name = "Completed")]
