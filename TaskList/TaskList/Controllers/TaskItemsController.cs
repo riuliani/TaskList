@@ -62,7 +62,7 @@ namespace TaskList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,description,CompleteBy,IsCompleted")] TaskItem taskItem)
+        public async Task<IActionResult> Create([Bind("ID,Description,CompleteBy,IsCompleted")] TaskItem taskItem)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace TaskList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,description,CompleteBy,IsCompleted")] TaskItem taskItem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,CompleteBy,IsCompleted")] TaskItem taskItem)
         {
             if (id != taskItem.ID)
             {
