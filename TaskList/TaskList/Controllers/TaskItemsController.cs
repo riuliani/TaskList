@@ -75,9 +75,30 @@ namespace TaskList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(string description)
+        public async Task<IActionResult> Search(TaskItem model)
         {
-            var results = _context.Items.Where(x => x.Description.ToLower().Contains(description.ToLower())).ToList();
+            var results = await _context.Items.Where(x => x.Description.ToLower().Contains(model.Description.ToLower())).ToListAsync();
+            return View("SearchTaskList", results);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchByDate(TaskItem model)
+        {
+            var results = await _context.Items.Where(y => y.CompleteBy == model.CompleteBy).ToListAsync();
+            return View("SearchTaskList", results);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchByCompleted(TaskItem model)
+        {
+            var results = await _context.Items.Where(y => y.IsCompleted == true).ToListAsync();
+            return View("SearchTaskList", results);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchByIncomplete(TaskItem model)
+        {
+            var results = await _context.Items.Where(y => y.IsCompleted == false).ToListAsync();
             return View("SearchTaskList", results);
         }
 

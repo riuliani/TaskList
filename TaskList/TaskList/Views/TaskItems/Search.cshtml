@@ -21,3 +21,38 @@
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search" method="post">
+            <div class="form-group">
+                <label asp-for="CompleteBy" class="control-label"></label>
+                <input asp-for="CompleteBy" class="form-control" required />
+                <span asp-validation-for="CompleteBy" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" asp-action="SearchByDate">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            Completed Tasks
+        </label>
+        <div>
+            <button type="submit" class="btn btn-primary" asp-action="SearchByCompleted">Search</button>
+        </div>
+    </div>
+    &nbsp;
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            Incompleted Tasks
+        </label>
+        <div>
+            <button type="submit" class="btn btn-primary" asp-action="SearchByIncomplete">Search</button>
+        </div>
+    </div>
+</div>
