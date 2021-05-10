@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations;
+using TaskList.Data;
 
 namespace TaskList.Models
 {
@@ -12,6 +13,6 @@ namespace TaskList.Models
         public DateTime CompleteBy { get; set; }
         [Display(Name = "Completed")]
         public bool IsCompleted { get; set; }
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
